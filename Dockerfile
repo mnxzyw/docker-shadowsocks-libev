@@ -17,7 +17,7 @@ FROM alpine
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
-ENV SHADOWSOCKS_LIBEV_VERSION v3.3.3
+ENV SHADOWSOCKS_LIBEV_VERSION v3.3.4
 
 # Build shadowsocks-libev
 RUN set -ex \
@@ -72,6 +72,9 @@ ENV DNS_ADDRS 1.1.1.1,1.0.0.1
 ENV ARGS -u
 
 EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
+
+# Run as nobody
+USER nobody
 
 # Start shadowsocks-libev server
 CMD exec ss-server \
