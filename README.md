@@ -3,7 +3,7 @@ This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadow
 
 Current version:
 - shadowsocks-libev: v3.3.4
-- v2ray-plugin: v1.2.0
+- v2ray-plugin: v1.3.0
 
 
 ## Quick Start
@@ -58,6 +58,7 @@ docker run -d \
 -e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u" \
 -e PASSWORD=YourPassword \
 -v /root/.acme.sh:/root/.acme.sh \
+--user root \
 --name=shadowsocks-libev \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
@@ -72,6 +73,7 @@ docker run -d \
 -e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key" \
 -e PASSWORD=YourPassword \
 -v /root/.acme.sh:/root/.acme.sh \
+--user root \
 --name=shadowsocks-libev \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
@@ -94,6 +96,7 @@ services:
   shadowsocks-libev:
     container_name: shadowsocks-libev
     image: acrisliu/shadowsocks-libev:latest
+    user: root
     ports:
       - "8388:8388/tcp"
       - "8388:8388/udp"
